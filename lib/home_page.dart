@@ -13,7 +13,7 @@ class homePage extends StatefulWidget {
 
 class _homePageState extends State<homePage> {
   static int squares_in_row = 11;
-  int number_of_squares = squares_in_row * 25;
+  int number_of_squares = squares_in_row * 17;
   int player = squares_in_row * 15 + 1;
 
   int red_ghost = squares_in_row * 2 + 1;
