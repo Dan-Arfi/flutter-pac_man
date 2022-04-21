@@ -3,6 +3,7 @@ import 'dart:math';
 import 'main.dart';
 import 'package:flutter/material.dart';
 import 'my_player.dart';
+import 'package:control_pad/control_pad.dart';
 
 class homePage extends StatefulWidget {
   const homePage({Key? key}) : super(key: key);
@@ -38,7 +39,7 @@ class _homePageState extends State<homePage> {
   ];
 
   bool start_button_pressed = true;
-  bool my_visible = false;
+  bool my_visible = true;
   bool game_over = false;
   List barriers = [
     32,
@@ -379,10 +380,10 @@ class _homePageState extends State<homePage> {
                   mainAxisAlignment: MainAxisAlignment.spaceAround,
                   crossAxisAlignment: CrossAxisAlignment.center,
                   children: [
-                    Text(
-                      'score: $score',
-                      style: TextStyle(color: Colors.white, fontSize: 30),
-                    ),
+                    // Text(
+                    //   'score: $score',
+                    //   style: TextStyle(color: Colors.white, fontSize: 30),
+                    // ),
                     GestureDetector(
                       onTap: () {
                         if (!button_pressed) {
@@ -398,6 +399,37 @@ class _homePageState extends State<homePage> {
                             fontSize: 40),
                       ),
                     ),
+                    //
+                    JoystickView(
+                      // interval: Duration(milliseconds: 1000000),
+                        showArrows: false,
+                        size: 100,
+                        onDirectionChanged: (double degress, double distance) {
+                          // distance = 0.2;
+                          // print(degress);
+                          if (distance > 0.2) {
+                            if (degress < 40) {
+                              print('up');
+                              direction = 'up';
+                            }
+                            if (degress > 330) {
+                              print('up');
+                              direction = 'up';
+                            }
+                            if (degress > 40 && degress < 130) {
+                              print('right');
+                              direction = 'right';
+                            }
+                            if (degress > 130 && degress < 230) {
+                              print('down');
+                              direction = 'down';
+                            }
+                            if (degress > 230 && degress < 330) {
+                              print('left');
+                              direction = 'left';
+                            }
+                          }
+                        })
                   ],
                 ),
               ],
@@ -500,6 +532,7 @@ class _homePageState extends State<homePage> {
     button_pressed = true;
     ghosts_movement();
     Timer.periodic(duration, (timer) {
+      
       pac_man_elimination();
       // print(red_ghost_deirection);
 
