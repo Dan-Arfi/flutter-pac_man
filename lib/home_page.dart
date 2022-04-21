@@ -401,6 +401,7 @@ class _homePageState extends State<homePage> {
                     ),
                     //
                     JoystickView(
+                      interval: Duration(milliseconds: 0),
                       // interval: Duration(milliseconds: 1000000),
                         showArrows: false,
                         size: 100,
